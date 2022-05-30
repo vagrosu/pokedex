@@ -1,0 +1,37 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 95px;
+  padding-inline: 10vw;
+  background-color: #F5DB13;
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.linksContainer {
+  display: flex;
+  align-items: center;
+}
+
+.logo:hover {
+  opacity: 75%;
+  cursor: pointer;
+}
+
+.linksContainer>h3 {
+  margin-left: 100px;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 29px;
+}
+
+.linksContainer>h3:hover {
+  cursor: pointer;
+  padding-bottom: 3px;
+  border-bottom: 3px solid #212121;
+}
+
+.selected {
+  padding-bottom: 3px;
+  border-bottom: 3px solid #212121;
+}
