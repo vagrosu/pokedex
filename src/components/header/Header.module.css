@@ -13,12 +13,17 @@
   align-items: center;
 }
 
+.logo {
+  user-select: none;
+}
+
 .logo:hover {
   opacity: 75%;
   cursor: pointer;
 }
 
 .linksContainer>h3 {
+  user-select: none;
   margin-left: 100px;
   font-weight: 400;
   font-size: 25px;
