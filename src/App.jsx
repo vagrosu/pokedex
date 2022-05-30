@@ -13,10 +13,12 @@ import {
   AboutPage,
   NotFoundPage,
 } from './pages/index';
+import Header from './components/header/Header';
 
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/pokedex" element={<PokedexPage />} />
