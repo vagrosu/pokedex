@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import styles from './Button.module.css';
 
 function Button(props) {
-  const containerClasses = `${styles.container} ${props.className} ${props.type === 'primary' ? styles.primaryBtn : styles.secondaryBtn}`;
+  const containerClasses = `${styles.button} ${props.className} ${props.type === 'primary' ? styles.primaryBtn : styles.secondaryBtn}`;
   return (
     <div className={containerClasses} onClick={props.onClick}>
       <h3 className={styles.text}>{props.children}</h3>
