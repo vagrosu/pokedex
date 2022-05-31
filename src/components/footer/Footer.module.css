@@ -1,0 +1,15 @@
+.footerContainer {
+  background-color: transparent;
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  text-align: center;
+}
+
+.text {
+  margin: 0px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 21px;
+  color: #212121;
+}

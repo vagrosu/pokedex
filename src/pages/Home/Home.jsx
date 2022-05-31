@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import Button from '../../components/button/Button';
+import Footer from '../../components/footer/Footer';
 // import pikachuCut from '../../assets/pikachuCut.svg';
 import pikachuFull from '../../assets/pikachuFull.svg';
 
@@ -30,6 +31,7 @@ function Home() {
           <img src={pikachuFull} alt="Pikachu" />
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
