@@ -31,7 +31,7 @@ function PokedexCard(props) {
   });
 
   return (
-    <div className={styles.pokedexCard}>
+    <div className={`${styles.pokedexCard} ${props.className}`}>
       <div className={styles.infoContainer}>
         <h3 className={styles.name}>{capitalizeFirstLetter(name)}</h3>
         <div className={styles.statsContainer}>
@@ -50,7 +50,7 @@ function PokedexCard(props) {
         </div>
       </div>
       <div className={styles.imageContainer} style={{ background: getBackgroundColor() }}>
-        <img src={image} alt="Pokemon" width="170px" height="170px" />
+        <img src={image} alt="Pokemon" width="140px" height="140px" />
       </div>
       <div className={styles.typesContainer}>
         {typeIcons()}
@@ -61,6 +61,11 @@ function PokedexCard(props) {
 
 PokedexCard.propTypes = {
   pokemonData: PropTypes.object.isRequired,
+  className: PropTypes.string,
+};
+
+PokedexCard.defaultProps = {
+  className: '',
 };
 
 export default PokedexCard;
