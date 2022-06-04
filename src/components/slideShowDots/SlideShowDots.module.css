@@ -1,0 +1,52 @@
+.slideShowDotsContainer {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  user-select: none;
+}
+
+.dot {
+  cursor: pointer;
+  width: 27px;
+  height: 27px;
+  margin-inline: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #bbb;
+  border-radius: 50%;
+  transition: background-color 0.6s ease;
+}
+
+.active,
+.dot:hover {
+  background-color: #8d8d8d;
+}
+
+.dotNumber {
+  margin: 0px;
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: -1px;
+  text-indent: -1px;
+}
+
+.dotSpacer {
+  margin: 0px 4px;
+  letter-spacing: 4px;
+  text-indent: 4px;
+  width: 27px;
+  text-align: center;
+}
+
+.arrow {
+  margin-inline: 10px;
+  width: 27px;
+  height: 27px;
+  cursor: pointer;
+}
+
+.arrowInactive {
+  opacity: 30%;
+  cursor: default;
+}
