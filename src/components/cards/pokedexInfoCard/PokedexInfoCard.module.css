@@ -191,6 +191,7 @@
   height: 7px;
   border-radius: 8px;
   width: 0%;
+  transition: width 1s;
 }
 
 .statContainer {

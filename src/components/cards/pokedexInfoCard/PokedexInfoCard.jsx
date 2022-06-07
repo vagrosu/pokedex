@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
 import styles from './PokedexInfoCard.module.css';
@@ -10,6 +10,7 @@ function capitalizeFirstLetter(string) {
 }
 
 function PokedexInfoCard(props) {
+  const [isLoaded, setIsLoaded] = useState(false);
   const {
     name, types, stats, abilities, id,
   } = props.pokemonData;
@@ -55,6 +56,8 @@ function PokedexInfoCard(props) {
     );
   });
 
+  useEffect(() => { setIsLoaded(true); }, []);
+
   const showBasicStats = () => {
     const hp = stats[0].base_stat;
     const hpPercent = Math.floor((hp / 255) * 100);
@@ -68,10 +71,10 @@ function PokedexInfoCard(props) {
           <div className={styles.emptyBar}>
             <div
               className={styles.filledBar}
-              style={{
+              style={isLoaded ? {
                 width: `${hpPercent}%`,
                 background: 'linear-gradient(270deg, #64D368 0.15%, #64D368 70.88%)',
-              }}
+              } : {}}
             />
           </div>
         </div>
@@ -81,10 +84,10 @@ function PokedexInfoCard(props) {
           <div className={styles.emptyBar}>
             <div
               className={styles.filledBar}
-              style={{
+              style={isLoaded ? {
                 width: `${xpPercent}%`,
                 background: 'linear-gradient(180deg, #F5DB13 0%, #F2B807 100%)',
-              }}
+              } : {}}
             />
           </div>
         </div>
