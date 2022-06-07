@@ -8,19 +8,30 @@
   align-items: center;
   top: 0px;
   left: 0px;
-  background: rgba(33, 33, 33, 0.7);
+  background: rgba(33, 33, 33, 0.8);
 
 }
 
 .closeButtonContainer {
   width: 800px;
-  margin-bottom: 15px;
   display: flex;
   justify-content: flex-end;
+  margin: 5px;
 }
 
 .closeButton {
+  width: 40px;
+  margin-right: 15px;
+  margin-bottom: 10px;
+  left: 0px;
+  top: 0px;
   cursor: pointer;
+}
+
+.closeButton:hover {
+  width: 44px;
+  margin-right: 12px;
+  margin-bottom: 6px;
 }
 
 .container {
