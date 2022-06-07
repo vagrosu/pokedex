@@ -81,6 +81,7 @@ function Pokedex() {
           page={page}
           setPage={setPage}
           lastPage={lastPage}
+          isKeyboardEnabled={pokemonCardIndex === null}
           className={styles.dots}
         />
       </div>

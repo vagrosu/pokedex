@@ -18,17 +18,20 @@ function SlideShowDots(props) {
     }
   };
 
-  useEffect(() => {
-    const keyPressHandler = ({ key }) => {
+  const keyPressHandler = ({ key }) => {
+    if (props.isKeyboardEnabled) {
       if (key === 'ArrowRight') {
         nextPageHandler();
       } else if (key === 'ArrowLeft') {
         prevPageHandler();
       }
-    };
+    }
+  };
+
+  useEffect(() => {
     window.addEventListener('keyup', keyPressHandler);
     return () => { window.removeEventListener('keyup', keyPressHandler); };
-  }, [props.page]);
+  }, [props.page, props.isKeyboardEnabled]);
 
   const displayDots = () => {
     const dots = [];
@@ -136,6 +139,7 @@ SlideShowDots.propTypes = {
   page: PropTypes.number.isRequired,
   lastPage: PropTypes.number.isRequired,
   setPage: PropTypes.func.isRequired,
+  isKeyboardEnabled: PropTypes.bool.isRequired,
   className: PropTypes.string,
 };
 
