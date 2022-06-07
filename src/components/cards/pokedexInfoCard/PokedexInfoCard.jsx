@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 import styles from './PokedexInfoCard.module.css';
 import closeIcon from '../../../assets/closeIcon.svg';
+import { getPokemonGradient } from '../../../colors/getPokemonColor';
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
@@ -101,8 +102,15 @@ function PokedexInfoCard(props) {
           onClick={props.closeCardHandler}
         />
       </div>
-      <div className={styles.container}>
-        <div className={styles.imageContainer}>
+      <div
+        className={styles.container}
+        style={{ background: getPokemonGradient(types[0].type.name) }}
+      >
+        <div className={styles.shadow} />
+        <div
+          className={styles.imageContainer}
+          style={{ background: getPokemonGradient(types[0].type.name) }}
+        >
           <img src={image} alt={name} className={styles.image} />
         </div>
         <div className={styles.infoContainer}>
