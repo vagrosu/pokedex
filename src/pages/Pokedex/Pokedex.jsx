@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import styles from './Pokedex.module.css';
 
+import SearchBar from '../../components/searchBar/SearchBar';
 import PokedexCard from '../../components/cards/pokedexCard/PokedexCard';
 import PokedexInfoCard from '../../components/cards/pokedexInfoCard/PokedexInfoCard';
 import SlideShowDots from '../../components/slideShowDots/SlideShowDots';
@@ -63,9 +64,6 @@ function Pokedex() {
         />
       ));
     }
-    if (pokemonsData && pokemonsData.length > pokemonsOnPage) {
-      setPokemonsData((prevData) => prevData.slice(pokemonsData.length - pokemonsOnPage));
-    }
     // return (<div style={{ height: '500px' }} />);
     return (null);
   };
@@ -74,6 +72,10 @@ function Pokedex() {
     <div className={styles.pokedex}>
       <div className={styles.container}>
         <h1 className={styles.title}>Over 600 Pokemons for you to choose your favorite</h1>
+        <SearchBar
+          className={styles.searchBar}
+          setPokemonsData={setPokemonsData}
+        />
         <div className={styles.cardsContainer}>
           {displayCards()}
         </div>
