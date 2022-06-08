@@ -46,7 +46,15 @@
   cursor: pointer;
 }
 
+.arrow:hover {
+  transform: scale(1.08);
+}
+
 .arrowInactive {
   opacity: 30%;
   cursor: default;
+}
+
+.arrowInactive:hover {
+  transform: none;
 }
