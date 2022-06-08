@@ -29,9 +29,7 @@
 }
 
 .closeButton:hover {
-  width: 44px;
-  margin-right: 12px;
-  margin-bottom: 6px;
+  transform: scale(1.15);
 }
 
 .container {

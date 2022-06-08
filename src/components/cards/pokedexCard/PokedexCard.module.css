@@ -14,9 +14,7 @@
 }
 
 .pokedexCard:hover {
-  width: 404px;
-  height: 154px;
-  margin: -2px;
+  transform: scale(1.02);
   filter: drop-shadow(5px 5px 5px rgba(33, 33, 33, 0.2));
 }
 
