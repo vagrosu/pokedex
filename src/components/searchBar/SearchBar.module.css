@@ -1,0 +1,12 @@
+.searchBar {
+  width: 95%;
+}
+
+.input {
+  background: #F2F2F2;
+  box-shadow: 4px 4px 16px rgba(1, 28, 64, 0.2);
+  border: none;
+  border-radius: 40px;
+  width: 95%;
+  height: 55px;
+}
