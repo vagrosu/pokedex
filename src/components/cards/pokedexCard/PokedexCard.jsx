@@ -61,7 +61,7 @@ function PokedexCard(props) {
 }
 
 PokedexCard.propTypes = {
-  pokemonData: PropTypes.object.isRequired,
+  pokemonData: PropTypes.shape.isRequired,
   onClick: PropTypes.func.isRequired,
   className: PropTypes.string,
 };
