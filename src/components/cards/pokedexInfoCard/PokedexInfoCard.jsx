@@ -26,15 +26,12 @@ function PokedexInfoCard(props) {
     </div>
   );
 
-  const showStatCards = () => {
-    const cards = [
-      statCard(stats[1].base_stat, 'Attack', 1),
-      statCard(stats[2].base_stat, 'Defense', 2),
-      statCard(stats[3].base_stat, 'Sp Attack', 3),
-      statCard(stats[4].base_stat, 'Sp Defense', 4),
-    ];
-    return cards;
-  };
+  const showStatCards = () => [
+    statCard(stats[1].base_stat, 'Attack', 1),
+    statCard(stats[2].base_stat, 'Defense', 2),
+    statCard(stats[3].base_stat, 'Sp Attack', 3),
+    statCard(stats[4].base_stat, 'Sp Defense', 4),
+  ];
 
   const showAbilities = () => abilities.map((ability, index) => {
     const abilityName = ability.ability.name;
@@ -142,7 +139,7 @@ function PokedexInfoCard(props) {
 }
 
 PokedexInfoCard.propTypes = {
-  pokemonData: PropTypes.object.isRequired,
+  pokemonData: PropTypes.shape.isRequired,
   closeCardHandler: PropTypes.func.isRequired,
 };
 
