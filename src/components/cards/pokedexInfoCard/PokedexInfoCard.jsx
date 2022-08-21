@@ -139,7 +139,7 @@ function PokedexInfoCard(props) {
 }
 
 PokedexInfoCard.propTypes = {
-  pokemonData: PropTypes.shape.isRequired,
+  pokemonData: PropTypes.shape().isRequired,
   closeCardHandler: PropTypes.func.isRequired,
 };
 
