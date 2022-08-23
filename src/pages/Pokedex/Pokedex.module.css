@@ -18,7 +18,7 @@
   font-size: 35px;
   line-height: 41px;
   letter-spacing: 3px;
-  margin: 0px;
+  margin: 0;
 }
 
 .searchBar {
@@ -28,7 +28,6 @@
 .cardsContainer {
   margin-top: 30px;
   display: grid;
-  grid-template-columns: auto auto auto;
   gap: 25px 35px;
 }
 

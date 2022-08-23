@@ -17,35 +17,45 @@ const fetchData = async (link) => {
   }
 };
 
+const pokemonsOnPage = 9;
+const maxPokemons = 630;
+
 function Pokedex() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonsData, setPokemonsData] = useState([]);
+  const [totalPokemons, setTotalPokemons] = useState(maxPokemons);
   const [pokemonCardIndex, setPokemonCardIndex] = useState(null);
   const [page, setPage] = useState(1);
-  const [lastPage, setLastPage] = useState(67);
+  const [lastPage, setLastPage] = useState(Math.ceil(totalPokemons / pokemonsOnPage));
   const [isLoading, setIsLoading] = useState(false);
-  const pokemonsOnPage = 9;
+
+  useEffect(() => {
+    setLastPage(Math.ceil(totalPokemons / pokemonsOnPage));
+  }, [totalPokemons]);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchData(`https://pokeapi.co/api/v2/pokemon/?offset=${(page - 1) * pokemonsOnPage}&limit=${pokemonsOnPage}`)
-      .then((res) => setPokemons(res))
+    fetchData(`https://pokeapi.co/api/v2/pokemon/?limit=${totalPokemons}`)
+      .then((res) => setPokemons(res.results))
       .catch((err) => console.log(err.message))
-      .then(setIsLoading(false));
-  }, [page]);
+      .then(() => setIsLoading(false));
+  }, []);
 
   useEffect(() => {
     setPokemonsData([]);
-    const pokemonsArray = pokemons.results;
-    if (pokemonsArray) {
-      pokemonsArray.forEach((pokemon) => {
-        const pokemonLink = pokemon.url;
+    const firstPokemon = (page - 1) * pokemonsOnPage;
+    const lastPokemon = (firstPokemon + pokemonsOnPage - 1) < totalPokemons
+      ? firstPokemon + pokemonsOnPage - 1
+      : totalPokemons - 1;
+    if (pokemons.length > 0) {
+      for (let i = firstPokemon; i <= lastPokemon; i++) {
+        const pokemonLink = pokemons[i].url;
         fetchData(pokemonLink)
           .then((res) => setPokemonsData((prevData) => [...prevData, res]))
           .catch((err) => console.log(err.message));
-      });
+      }
     }
-  }, [pokemons]);
+  }, [page, pokemons]);
 
   useEffect(() => { console.log(page, pokemons); }, [pokemons]);
   useEffect(() => { console.log(pokemonsData); }, [pokemonsData]);
@@ -55,7 +65,7 @@ function Pokedex() {
   };
 
   const displayCards = () => {
-    if (pokemonsData && pokemonsData.length === pokemonsOnPage) {
+    if (pokemonsData) {
       return pokemonsData.map((pokemon, index) => (
         <PokedexCard
           onClick={() => setPokemonCardIndex(index)}
@@ -65,7 +75,7 @@ function Pokedex() {
       ));
     }
     // return (<div style={{ height: '500px' }} />);
-    return (null);
+    return null;
   };
 
   return (
@@ -76,7 +86,10 @@ function Pokedex() {
           className={styles.searchBar}
           setPokemonsData={setPokemonsData}
         />
-        <div className={styles.cardsContainer}>
+        <div
+          className={styles.cardsContainer}
+          style={{ gridTemplateColumns: `repeat(${pokemonsData.length > 2 ? 3 : pokemonsData.length}, 1fr)` }}
+        >
           {displayCards()}
         </div>
         <SlideShowDots
