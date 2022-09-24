@@ -26,16 +26,16 @@ function Pokedex() {
   const [totalPokemons, setTotalPokemons] = useState(maxPokemons);
   const [pokemonCardIndex, setPokemonCardIndex] = useState(null);
   const [page, setPage] = useState(1);
-  const [lastPage, setLastPage] = useState(Math.ceil(totalPokemons / pokemonsOnPage));
+  const [lastPage, setLastPage] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setLastPage(Math.ceil(totalPokemons / pokemonsOnPage));
-  }, [totalPokemons]);
+    setLastPage(Math.ceil(pokemons.length / pokemonsOnPage));
+  }, [pokemons.length]);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchData(`https://pokeapi.co/api/v2/pokemon/?limit=${totalPokemons}`)
+    fetchData(`https://pokeapi.co/api/v2/pokemon/?limit=${maxPokemons}`)
       .then((res) => setPokemons(res.results))
       .catch((err) => console.log(err.message))
       .then(() => setIsLoading(false));
@@ -44,9 +44,9 @@ function Pokedex() {
   useEffect(() => {
     setPokemonsData([]);
     const firstPokemon = (page - 1) * pokemonsOnPage;
-    const lastPokemon = (firstPokemon + pokemonsOnPage - 1) < totalPokemons
+    const lastPokemon = (firstPokemon + pokemonsOnPage - 1) < pokemons.length
       ? firstPokemon + pokemonsOnPage - 1
-      : totalPokemons - 1;
+      : pokemons.length - 1;
     if (pokemons.length > 0) {
       for (let i = firstPokemon; i <= lastPokemon; i++) {
         const pokemonLink = pokemons[i].url;
@@ -84,7 +84,8 @@ function Pokedex() {
         <h1 className={styles.title}>Over 600 Pokemons for you to choose your favorite</h1>
         <SearchBar
           className={styles.searchBar}
-          setPokemonsData={setPokemonsData}
+          pokemons={pokemons}
+          setPokemons={setPokemons}
         />
         <div
           className={styles.cardsContainer}
