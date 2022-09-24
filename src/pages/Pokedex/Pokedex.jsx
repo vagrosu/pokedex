@@ -23,7 +23,7 @@ const maxPokemons = 630;
 function Pokedex() {
   const [pokemons, setPokemons] = useState([]);
   const [pokemonsData, setPokemonsData] = useState([]);
-  const [totalPokemons, setTotalPokemons] = useState(maxPokemons);
+  // const [totalPokemons, setTotalPokemons] = useState(maxPokemons);
   const [pokemonCardIndex, setPokemonCardIndex] = useState(null);
   const [page, setPage] = useState(1);
   const [lastPage, setLastPage] = useState(0);
@@ -42,6 +42,7 @@ function Pokedex() {
   }, []);
 
   useEffect(() => {
+    setIsLoading(true);
     setPokemonsData([]);
     const firstPokemon = (page - 1) * pokemonsOnPage;
     const lastPokemon = (firstPokemon + pokemonsOnPage - 1) < pokemons.length
@@ -52,7 +53,8 @@ function Pokedex() {
         const pokemonLink = pokemons[i].url;
         fetchData(pokemonLink)
           .then((res) => setPokemonsData((prevData) => [...prevData, res]))
-          .catch((err) => console.log(err.message));
+          .catch((err) => console.log(err.message))
+          .then(() => i === lastPokemon && setIsLoading(false));
       }
     }
   }, [page, pokemons]);
@@ -93,13 +95,15 @@ function Pokedex() {
         >
           {displayCards()}
         </div>
-        <SlideShowDots
-          page={page}
-          setPage={setPage}
-          lastPage={lastPage}
-          isKeyboardEnabled={pokemonCardIndex === null}
-          className={styles.dots}
-        />
+        {!isLoading && (
+          <SlideShowDots
+            page={page}
+            setPage={setPage}
+            lastPage={lastPage}
+            isKeyboardEnabled={pokemonCardIndex === null}
+            className={styles.dots}
+          />
+        )}
       </div>
       <Footer />
       {pokemonCardIndex != null && (
