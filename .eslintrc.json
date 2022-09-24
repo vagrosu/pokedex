@@ -26,6 +26,9 @@
         "jsx-a11y/no-static-element-interactions": "off",
         "react/destructuring-assignment": "off",
         "react/forbid-prop-types": "off",
-        "no-plusplus": "off"
+        "no-plusplus": "off",
+        "object-curly-spacing": "off",
+        "no-lonely-if": "off",
+        "consistent-return": "off"
     }
 }
